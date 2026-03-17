@@ -1,0 +1,529 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    line-height: 1.5;
+    color: #1e293b;
+}
+
+.card {
+    max-width: 1000px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 32px;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.card-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Левая колонка */
+.sidebar {
+    flex: 1 1 300px;
+    background: linear-gradient(145deg, #2d3b4f, #1e2a3a);
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.avatar {
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 20px -5px rgba(0,0,0,0.3);
+}
+
+.avatar span {
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.sidebar h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: -0.5px;
+}
+
+.sidebar .title {
+    font-size: 1rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 25px;
+    backdrop-filter: blur(4px);
+}
+
+.contact-info {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-radius: 16px;
+    transition: background 0.3s;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.contact-item i {
+    font-size: 1.3rem;
+    width: 25px;
+    color: #93c5fd;
+}
+
+.contact-item a, .contact-item span {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    word-break: break-word;
+    font-size: 0.95rem;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+    color: #bfdbfe;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: white;
+    background: rgba(255,255,255,0.1);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background: #3b82f6;
+    transform: translateY(-5px);
+}
+
+/* Стиль для кнопки приложения (ракета) */
+.social-links .app-btn {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    box-shadow: 0 4px 8px rgba(249, 115, 22, 0.3);
+}
+
+.social-links .app-btn i {
+    font-size: 1.4rem;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+}
+
+.social-links .app-btn:hover {
+    background: linear-gradient(135deg, #ea580c, #c2410c);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 6px 12px rgba(249, 115, 22, 0.4);
+}
+
+/* Правая колонка */
+.main {
+    flex: 2 1 400px;
+    padding: 30px 20px;
+    background: white;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section h2 i {
+    color: #3b82f6;
+    font-size: 1.6rem;
+}
+
+.section p {
+    font-size: 1rem;
+    color: #334155;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.services {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.service-item {
+    background: #f8fafc;
+    padding: 18px 15px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-item:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 8px 12px -3px rgba(59,130,246,0.2);
+    transform: scale(1.01);
+}
+
+.service-item i {
+    font-size: 2.2rem;
+    color: #3b82f6;
+    margin-bottom: 8px;
+}
+
+.service-item h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.service-item p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0 0 12px 0;
+}
+
+/* Стили для изображений под увлечениями */
+.service-image {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    transition: height 0.5s ease, margin-top 0.5s ease;
+    margin-top: 0;
+}
+
+.service-item.active .service-image {
+    height: 140px;
+    margin-top: 12px;
+}
+
+.service-image img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.service-image img:hover {
+    transform: scale(1.03);
+}
+
+/* Стили для портфолио */
+.portfolio-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.portfolio-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 12px 15px;
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s;
+}
+
+.portfolio-item:hover {
+    border-color: #3b82f6;
+    transform: translateX(3px);
+}
+
+.portfolio-item strong {
+    min-width: auto;
+    color: #0f172a;
+    font-size: 1rem;
+    margin-bottom: 3px;
+}
+
+.portfolio-item a {
+    color: #3b82f6;
+    text-decoration: none;
+    word-break: break-all;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.portfolio-item a:hover {
+    text-decoration: underline;
+}
+
+.quote {
+    font-style: italic;
+    border-left: 4px solid #3b82f6;
+    padding-left: 16px;
+    color: #475569;
+    font-size: 1rem;
+    margin: 25px 0 0 0;
+    line-height: 1.6;
+}
+
+/* Специальные мобильные стили */
+@media (min-width: 769px) {
+    /* Стили для планшетов и десктопов */
+    body {
+        padding: 20px;
+    }
+    
+    .card {
+        border-radius: 48px;
+    }
+    
+    .sidebar {
+        padding: 40px 30px;
+    }
+    
+    .avatar {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .avatar span {
+        font-size: 5rem;
+    }
+    
+    .sidebar h1 {
+        font-size: 2.5rem;
+    }
+    
+    .sidebar .title {
+        font-size: 1.2rem;
+        padding: 8px 20px;
+    }
+    
+    .main {
+        padding: 40px;
+    }
+    
+    .services {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .portfolio-item {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .portfolio-item strong {
+        min-width: 140px;
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Стили для больших десктопов */
+    .services {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Дополнительные улучшения для мобильных */
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+    
+    .card {
+        border-radius: 24px;
+    }
+    
+    .sidebar {
+        padding: 25px 16px;
+    }
+    
+    .avatar {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .avatar span {
+        font-size: 3.5rem;
+    }
+    
+    .sidebar h1 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-item {
+        padding: 8px 12px;
+    }
+    
+    .contact-item i {
+        font-size: 1.2rem;
+        width: 22px;
+    }
+    
+    .contact-item a, .contact-item span {
+        font-size: 0.9rem;
+    }
+    
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+    
+    .main {
+        padding: 20px 16px;
+    }
+    
+    .section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .section h2 i {
+        font-size: 1.4rem;
+    }
+    
+    .service-item {
+        padding: 15px 12px;
+    }
+    
+    .service-item i {
+        font-size: 2rem;
+    }
+    
+    .service-item h3 {
+        font-size: 1.1rem;
+    }
+    
+    .service-item p {
+        font-size: 0.85rem;
+    }
+    
+    .service-item.active .service-image {
+        height: 120px;
+    }
+    
+    .service-image img {
+        height: 120px;
+    }
+    
+    .portfolio-item {
+        padding: 10px 12px;
+    }
+    
+    .quote {
+        font-size: 0.95rem;
+        padding-left: 12px;
+    }
+}
+
+/* Горизонтальная ориентация на мобильных */
+@media (max-width: 896px) and (orientation: landscape) {
+    .card-content {
+        flex-direction: row;
+    }
+    
+    .sidebar {
+        flex: 1 1 250px;
+    }
+    
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .avatar span {
+        font-size: 3rem;
+    }
+    
+    .sidebar h1 {
+        font-size: 1.6rem;
+    }
+    
+    .services {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Улучшение читаемости на мобильных */
+.section p, .quote, .portfolio-item a {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Добавляем больше воздуха на мобильных */
+@media (max-width: 768px) {
+    .section {
+        margin-bottom: 25px;
+    }
+    
+    .services {
+        gap: 12px;
+    }
+    
+    .portfolio-links {
+        gap: 8px;
+    }
+    
+    .quote {
+        margin-top: 20px;
+    }
+}
