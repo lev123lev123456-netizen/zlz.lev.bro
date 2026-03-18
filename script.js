@@ -1,23 +1,13 @@
-/**
- * Скрипт для сайта-визитки Льва
- */
-
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // 1. Обработка кликов по карточкам увлечений (появление картинок)
     const serviceItems = document.querySelectorAll('.service-item');
     
     serviceItems.forEach(item => {
         item.addEventListener('click', function(e) {
-            // Предотвращаем всплытие события, если клик был по изображению
             if (e.target.closest('.service-image')) return;
-            
-            // Переключаем класс active для текущего элемента
             this.classList.toggle('active');
         });
     });
 
-    // 2. Плавная прокрутка для всех внутренних ссылок
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
     smoothScrollLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -35,10 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 3. Анимация появления элементов при скролле
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.05,
+        rootMargin: '0px 0px -20px 0px'
     };
 
     const observer = new IntersectionObserver(function(entries) {
@@ -50,47 +39,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Применяем анимацию к секциям
-    const sections = document.querySelectorAll('.section, .quote, .portfolio-item');
+    const sections = document.querySelectorAll('.section, .quote, .portfolio-item, .service-item, .privacy-note');
     sections.forEach(section => {
         section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        section.style.transform = 'translateY(15px)';
+        section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         observer.observe(section);
     });
 
-    // 4. Динамическое обновление года (если добавите footer)
-    const yearElement = document.querySelector('.current-year');
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-    }
-
-    // 5. Обработка клика по кнопке приложения (ракета)
-    const appBtn = document.querySelector('.app-btn');
-    if (appBtn) {
-        appBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            showNotification('🚀 Запуск приложения...');
-            
-            // Здесь можно добавить анимацию ракеты
-            this.style.animation = 'rocketLaunch 0.5s ease';
-            setTimeout(() => {
-                this.style.animation = '';
-            }, 500);
-        });
-    }
-
-    // 6. Маска для телефона
-    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-    phoneLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            console.log('Звонок по номеру: ' + this.textContent);
-        });
-    });
-
-    // 7. Анимация для аватара
     const avatar = document.querySelector('.avatar');
-    if (avatar) {
+    if (avatar && !('ontouchstart' in window)) {
         avatar.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.05)';
             this.style.transition = 'transform 0.3s ease';
@@ -101,58 +59,51 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 8. Устанавливаем правильные иконки
-    // Театр
     const theaterIcon = document.querySelector('.service-item[data-service="theater"] i');
     if (theaterIcon) {
         theaterIcon.className = 'fas fa-mask';
     }
 
-    // Кодинг
     const codingIcon = document.querySelector('.service-item[data-service="coding"] i');
     if (codingIcon) {
         codingIcon.className = 'fas fa-code';
     }
 
-    // Гейминг (уже должно быть правильно, но на всякий случай)
     const gamingIcon = document.querySelector('.service-item[data-service="gaming"] i');
     if (gamingIcon && !gamingIcon.classList.contains('fa-gamepad')) {
         gamingIcon.className = 'fas fa-gamepad';
     }
 
-    // Добавляем анимацию для ракеты
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes rocketLaunch {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
-            100% { transform: translateY(0) rotate(0deg); }
-        }
-    `;
-    document.head.appendChild(style);
-
+    if ('ontouchstart' in window) {
+        document.body.classList.add('touch-device');
+    }
 });
 
-// Функция для показа уведомлений
 function showNotification(message) {
     let notification = document.querySelector('.custom-notification');
     
     if (!notification) {
         notification = document.createElement('div');
         notification.className = 'custom-notification';
+        
+        const isMobile = window.innerWidth <= 768;
+        
         notification.style.cssText = `
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: ${isMobile ? '16px' : '20px'};
+            right: ${isMobile ? '16px' : '20px'};
+            left: ${isMobile ? '16px' : 'auto'};
             background: #1e293b;
             color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-size: 0.9rem;
+            padding: ${isMobile ? '12px 20px' : '15px 25px'};
+            border-radius: ${isMobile ? '30px' : '50px'};
+            font-size: ${isMobile ? '0.9rem' : '0.95rem'};
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             z-index: 1000;
             animation: slideIn 0.3s ease;
             border-left: 4px solid #3b82f6;
+            text-align: center;
+            max-width: ${isMobile ? 'calc(100% - 32px)' : '400px'};
         `;
         document.body.appendChild(notification);
         
@@ -198,7 +149,6 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Функция для копирования email
 function copyEmailToClipboard() {
     const emailLink = document.querySelector('a[href^="mailto:"]');
     if (emailLink) {
