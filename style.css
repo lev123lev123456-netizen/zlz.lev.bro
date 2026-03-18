@@ -33,7 +33,6 @@ body {
     flex-wrap: wrap;
 }
 
-/* Левая колонка */
 .sidebar {
     flex: 1 1 300px;
     background: linear-gradient(145deg, #2d3b4f, #1e2a3a);
@@ -150,24 +149,6 @@ body {
     transform: translateY(-5px);
 }
 
-/* Стиль для кнопки приложения (ракета) */
-.social-links .app-btn {
-    background: linear-gradient(135deg, #f97316, #ea580c);
-    box-shadow: 0 4px 8px rgba(249, 115, 22, 0.3);
-}
-
-.social-links .app-btn i {
-    font-size: 1.4rem;
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
-}
-
-.social-links .app-btn:hover {
-    background: linear-gradient(135deg, #ea580c, #c2410c);
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 6px 12px rgba(249, 115, 22, 0.4);
-}
-
-/* Правая колонка */
 .main {
     flex: 2 1 400px;
     padding: 30px 20px;
@@ -243,7 +224,6 @@ body {
     margin: 0 0 12px 0;
 }
 
-/* Стили для изображений под увлечениями */
 .service-image {
     width: 100%;
     height: 0;
@@ -270,12 +250,11 @@ body {
     transform: scale(1.03);
 }
 
-/* Стили для портфолио */
 .portfolio-links {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .portfolio-item {
@@ -314,6 +293,16 @@ body {
     text-decoration: underline;
 }
 
+.privacy-note {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 10px;
+    padding-left: 5px;
+    border-left: 2px solid #3b82f6;
+    padding-left: 12px;
+}
+
 .quote {
     font-style: italic;
     border-left: 4px solid #3b82f6;
@@ -324,9 +313,7 @@ body {
     line-height: 1.6;
 }
 
-/* Специальные мобильные стили */
 @media (min-width: 769px) {
-    /* Стили для планшетов и десктопов */
     body {
         padding: 20px;
     }
@@ -374,16 +361,18 @@ body {
     .portfolio-item strong {
         min-width: 140px;
     }
+    
+    .privacy-note {
+        font-size: 0.95rem;
+    }
 }
 
 @media (min-width: 1024px) {
-    /* Стили для больших десктопов */
     .services {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-/* Дополнительные улучшения для мобильных */
 @media (max-width: 480px) {
     body {
         padding: 8px;
@@ -469,13 +458,17 @@ body {
         padding: 10px 12px;
     }
     
+    .privacy-note {
+        font-size: 0.85rem;
+        padding-left: 10px;
+    }
+    
     .quote {
         font-size: 0.95rem;
         padding-left: 12px;
     }
 }
 
-/* Горизонтальная ориентация на мобильных */
 @media (max-width: 896px) and (orientation: landscape) {
     .card-content {
         flex-direction: row;
@@ -503,13 +496,11 @@ body {
     }
 }
 
-/* Улучшение читаемости на мобильных */
-.section p, .quote, .portfolio-item a {
+.section p, .quote, .portfolio-item a, .privacy-note {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Добавляем больше воздуха на мобильных */
 @media (max-width: 768px) {
     .section {
         margin-bottom: 25px;
